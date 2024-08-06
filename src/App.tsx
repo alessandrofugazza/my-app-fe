@@ -1,9 +1,10 @@
 import "./App.scss";
+import HomeCardGrid from "./components/HomeCardGrid";
 
 function App() {
   return (
     <>
-      <h1>HI</h1>
+      <HomeCardGrid />
     </>
   );
 }
