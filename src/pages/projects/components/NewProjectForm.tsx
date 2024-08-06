@@ -17,8 +17,8 @@ export default function NewProjectForm() {
     };
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/projects/v1/`, newProject);
-      console.log("Project added:", response.data);
+      const re = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/projects/v1/`, newProject);
+      console.log("Project added:", re.data);
       setTitle("");
     } catch (error) {
       console.error("There was an error adding the project!", error);
