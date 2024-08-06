@@ -1,17 +1,12 @@
-import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import HomeCard from "./HomeCard";
 
 export default function HomeCardGrid() {
   return (
-    <Row>
+    <Row xs={1} md={4} className="g-4">
       <Col>
-        <Card>
-          <Card.Body>
-            <i className="bi-alarm"></i>
-          </Card.Body>
-          <Card.Footer>Sources</Card.Footer>
-        </Card>
+        <HomeCard />
       </Col>
     </Row>
   );
