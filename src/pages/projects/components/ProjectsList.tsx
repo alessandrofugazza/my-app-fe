@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { IAProject } from "../../../interfaces/api/IAProject";
+import { IAProject } from "../../../types/api/IAProject";
 import { Button } from "react-bootstrap";
 import ProjectForm from "./ProjectForm";
 

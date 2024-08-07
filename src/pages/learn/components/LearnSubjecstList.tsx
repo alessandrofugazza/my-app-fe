@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { IALearnSubject } from "../../../interfaces/api/IALearnSubject";
+import { IALearnSubject } from "../../../types/api/IALearnSubject";
 import { Button } from "react-bootstrap";
 import LearnSubjectForm from "./LearnSubjectForm";
 

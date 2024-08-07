@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { IASource } from "../../../interfaces/api/IASource";
+import { IASource } from "../../../types/api/IASource";
 import { Button } from "react-bootstrap";
 import SourceForm from "./SourceForm";
 
@@ -81,7 +81,10 @@ export default function SourcesList() {
       </div>
       {(isAddingSource || editingSource) && (
         <div className="mt-5">
-          <SourceForm initialData={editingSource || { title: "", description: "" }} onSubmit={handleFormSubmit} />
+          <SourceForm
+            initialData={editingSource || { title: "", description: "", author: "", topic: "", type: "" }}
+            onSubmit={handleFormSubmit}
+          />
         </div>
       )}
     </>
