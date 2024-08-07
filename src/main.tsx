@@ -8,7 +8,7 @@ import ProjectsPage from "./pages/projects/ProjectsPage.tsx";
 import SourcesPage from "./pages/sources/SourcesPage.tsx";
 import ProgressPage from "./pages/progress/ProgressPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
-import LearnPage from "./pages/projects copy/LearnPage.tsx";
+import LearnPage from "./pages/learn/LearnPage.tsx";
 
 const router = createBrowserRouter([
   {
