@@ -39,7 +39,10 @@ export default function ProjectsList() {
       <ListGroup>
         {projects.map((project) => (
           <ListGroup.Item key={project.id} className="d-flex">
-            <span className="flex-grow-1">{project.title}</span>
+            <div className="flex-grow-1">
+              <div className="fw-bold">{project.title}</div>
+              {project.description}
+            </div>
             <div className="ms-auto">
               <i className="bi bi-x ms-auto interactive-icon" onClick={() => handleDelete(project.id)}></i>
             </div>
