@@ -1,6 +1,7 @@
 import { Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import "./HomeCard.scss";
 
 interface IHomeCardProps {
   to: string;
@@ -11,7 +12,7 @@ interface IHomeCardProps {
 export default function HomeCard({ to, section, icon }: IHomeCardProps) {
   return (
     <Col>
-      <Card style={{ height: "13rem", textDecoration: "none" }} as={Link} to={`/${to}`}>
+      <Card className="home-card" style={{ height: "13rem", textDecoration: "none" }} as={Link} to={`/${to}`}>
         <Card.Body className="d-flex justify-content-center align-items-center">
           <i className={`${icon} display-1`}></i>
         </Card.Body>
