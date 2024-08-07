@@ -1,56 +1,48 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-export default function NewProjectForm() {
-  const [newProjectFormData, setNewProjectFormData] = useState({
-    title: "",
-    description: "",
-  });
+export default function ProjectForm({ initialData = { title: "", description: "" }, onSubmit }) {
+  const [projectFormData, setProjectFormData] = useState(initialData);
+
+  // CHECK why
+  useEffect(() => {
+    setProjectFormData(initialData);
+  }, [initialData]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setNewProjectFormData({
-      ...newProjectFormData,
+    setProjectFormData({
+      ...projectFormData,
       [name]: value,
     });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    try {
-      const re = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/projects/v1/`, newProjectFormData);
-      console.log("Project added:", re.data);
-      setNewProjectFormData({
-        title: "",
-        description: "",
-      });
-    } catch (error) {
-      console.error("There was an error adding the project!", error);
-    }
+    onSubmit(projectFormData);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formProjectTitle">
-        <Form.Label>New Project</Form.Label>
+        <Form.Label>{initialData.title ? "Edit Project" : "New Project"}</Form.Label>
         <Form.Control
           type="text"
           name="title"
           placeholder="Enter title"
-          value={newProjectFormData.title}
+          value={projectFormData.title}
           onChange={handleInputChange}
         />
         <Form.Control
           type="text"
           name="description"
           placeholder="Enter description"
-          value={newProjectFormData.description}
+          value={projectFormData.description}
           onChange={handleInputChange}
         />
       </Form.Group>
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{initialData.title ? "Update" : "Submit"}</Button>
     </Form>
   );
 }
