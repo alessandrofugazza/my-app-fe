@@ -61,23 +61,27 @@ export default function ProjectsList() {
 
   return (
     <>
-      <ListGroup>
-        {projects.map((project) => (
-          <ListGroup.Item key={project.id} className="d-flex">
-            <div className="flex-grow-1">
-              <div className="fw-bold">{project.title}</div>
-              {project.description}
-            </div>
-            <div className="ms-auto d-flex gap-2">
-              <i className="bi bi-pencil-square interactive-icon" onClick={() => handleEdit(project)}></i>
-              <i className="bi bi-x-lg interactive-icon" onClick={() => handleDelete(project.id)}></i>
-            </div>
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-      <Button onClick={handleAddProjectButtonClick}>Add project</Button>
+      <div className="d-flex flex-column gap-3">
+        <ListGroup>
+          {projects.map((project) => (
+            <ListGroup.Item key={project.id} className="d-flex">
+              <div className="flex-grow-1">
+                <div className="fw-bold">{project.title}</div>
+                {project.description}
+              </div>
+              <div className="ms-auto d-flex gap-2">
+                <i className="bi bi-pencil-square interactive-icon" onClick={() => handleEdit(project)}></i>
+                <i className="bi bi-x-lg interactive-icon" onClick={() => handleDelete(project.id)}></i>
+              </div>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <Button onClick={handleAddProjectButtonClick}>Add project</Button>
+      </div>
       {(isAddingProject || editingProject) && (
-        <ProjectForm initialData={editingProject || { title: "", description: "" }} onSubmit={handleFormSubmit} />
+        <div className="mt-5">
+          <ProjectForm initialData={editingProject || { title: "", description: "" }} onSubmit={handleFormSubmit} />
+        </div>
       )}
     </>
   );
