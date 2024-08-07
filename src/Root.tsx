@@ -1,13 +1,16 @@
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import "./App.scss";
 import HomeCardGrid from "./components/HomeCardGrid";
+import AppNavbar from "./components/AppNavbar";
+import { Outlet } from "react-router-dom";
 
 export default function Root() {
   return (
-    <Row>
-      <Col>
-        <HomeCardGrid />
-      </Col>
-    </Row>
+    <div className="d-flex flex-column h-100">
+      <AppNavbar />
+      <Container className="py-5 my-auto">
+        <Outlet />
+      </Container>
+    </div>
   );
 }

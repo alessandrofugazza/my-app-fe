@@ -8,32 +8,38 @@ import { Container } from "react-bootstrap";
 import ProjectsPage from "./pages/projects/ProjectsPage.tsx";
 import SourcesPage from "./pages/sources/SourcesPage.tsx";
 import ProgressPage from "./pages/progress/ProgressPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "sources",
-    element: <SourcesPage />,
-  },
-  {
-    path: "progress",
-    element: <ProgressPage />,
-  },
-  {
-    path: "projects",
-    element: <ProjectsPage />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "projects",
+        element: <ProjectsPage />,
+      },
+      {
+        path: "sources",
+        element: <SourcesPage />,
+      },
+      {
+        path: "progress",
+        element: <ProgressPage />,
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     {/* CHECK meh */}
-    <Container className="align-content-center py-5" style={{ height: "100vh" }}>
-      <RouterProvider router={router} />
-    </Container>
+
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
