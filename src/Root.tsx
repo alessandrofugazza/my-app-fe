@@ -1,6 +1,5 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "./App.scss";
-import HomeCardGrid from "./components/HomeCardGrid";
 import AppNavbar from "./components/AppNavbar";
 import { Outlet } from "react-router-dom";
 

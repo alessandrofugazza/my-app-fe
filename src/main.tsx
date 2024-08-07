@@ -4,11 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.scss";
 import Root from "./Root.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import { Container } from "react-bootstrap";
 import ProjectsPage from "./pages/projects/ProjectsPage.tsx";
 import SourcesPage from "./pages/sources/SourcesPage.tsx";
 import ProgressPage from "./pages/progress/ProgressPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
+import LearnPage from "./pages/projects copy/LearnPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "progress",
         element: <ProgressPage />,
+      },
+      {
+        path: "learn",
+        element: <LearnPage />,
       },
     ],
   },

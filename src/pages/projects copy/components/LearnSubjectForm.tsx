@@ -1,43 +1,42 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
-export default function ProjectForm({ initialData = { title: "", description: "" }, onSubmit }) {
-  const [projectFormData, setProjectFormData] = useState(initialData);
+export default function LearnSubjectForm({ initialData = { title: "", description: "" }, onSubmit }) {
+  const [learnSubjectFormData, setLearnSubjectFormData] = useState(initialData);
 
-  // CHECK why
   useEffect(() => {
-    setProjectFormData(initialData);
+    setLearnSubjectFormData(initialData);
   }, [initialData]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setProjectFormData({
-      ...projectFormData,
+    setLearnSubjectFormData({
+      ...learnSubjectFormData,
       [name]: value,
     });
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit(projectFormData);
+    onSubmit(learnSubjectFormData);
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formProjectTitle">
-        <Form.Label>{initialData.title ? "Edit Project" : "New Project"}</Form.Label>
+      <Form.Group className="mb-3" controlId="formLearnSubjectTitle">
+        <Form.Label>{initialData.title ? "Edit LearnSubject" : "New LearnSubject"}</Form.Label>
         <Form.Control
           type="text"
           name="title"
           placeholder="Enter title"
-          value={projectFormData.title}
+          value={learnSubjectFormData.title}
           onChange={handleInputChange}
         />
         <Form.Control
           type="text"
           name="description"
           placeholder="Enter description"
-          value={projectFormData.description}
+          value={learnSubjectFormData.description}
           onChange={handleInputChange}
         />
       </Form.Group>
