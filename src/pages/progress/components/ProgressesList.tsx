@@ -38,7 +38,10 @@ export default function ProgressesList() {
           <Tab.Content>
             {progresses.map((progress) => (
               <Tab.Pane key={progress.id} eventKey={`#${progress.id}`}>
-                <span className="fs-3">{progress.progress}</span>
+                <p>{progress.progress}</p>
+                {progress.notes.map((note) => (
+                  <p key={note}>{note}</p>
+                ))}
               </Tab.Pane>
             ))}
           </Tab.Content>
