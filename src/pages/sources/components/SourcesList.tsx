@@ -81,10 +81,7 @@ export default function SourcesList() {
       </div>
       {(isAddingSource || editingSource) && (
         <div className="mt-5">
-          <SourceForm
-            initialData={editingSource || { title: "", description: "", author: "", topic: "", type: "" }}
-            onSubmit={handleFormSubmit}
-          />
+          <SourceForm initialData={editingSource} onSubmit={handleFormSubmit} />
         </div>
       )}
     </>

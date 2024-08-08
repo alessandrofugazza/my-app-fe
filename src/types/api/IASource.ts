@@ -3,8 +3,10 @@ export interface IASource {
   title: string;
   author: string;
   description: string;
-  topic: string;
+  source: string;
   type: string;
+  topic: string;
+  notes: string[];
   created_at: string;
   updated_at: string;
 }
