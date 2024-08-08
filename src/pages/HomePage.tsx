@@ -8,7 +8,7 @@ export default function HomePage() {
         <Card.Body>
           <Card.Title className="display-1 fw-semibold">MOTD</Card.Title>
           <Card.Text className="fs-2">
-            <span>Another day in this purposeless life</span>
+            <span>Love yourself</span>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -9,6 +9,7 @@ import SourcesPage from "./pages/sources/SourcesPage.tsx";
 import ProgressPage from "./pages/progress/ProgressPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import LearnPage from "./pages/learn/LearnPage.tsx";
+import NotesPage from "./pages/notes/NotesPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "learn",
         element: <LearnPage />,
+      },
+      {
+        path: "notes",
+        element: <NotesPage />,
       },
     ],
   },

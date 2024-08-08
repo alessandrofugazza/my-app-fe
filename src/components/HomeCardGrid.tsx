@@ -8,6 +8,7 @@ export default function HomeCardGrid() {
       <HomeCard to="progress" section="Progress" icon="bi bi-arrow-bar-right" />
       <HomeCard to="projects" section="Projects" icon="bi bi-easel" />
       <HomeCard to="learn" section="Learn" icon="bi bi-book" />
+      <HomeCard to="notes" section="Notes" icon="bi bi-sticky" />
     </Row>
   );
 }
