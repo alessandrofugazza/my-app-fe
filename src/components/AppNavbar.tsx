@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function AppNavbar() {
   return (
-    <Navbar expand="sm" className="bg-body-tertiary">
+    <Navbar expand="sm" className="bg-body-tertiary" sticky="top">
       <Container fluid>
         <Navbar.Brand as={Link} to={"/"}>
           My App
