@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, FloatingLabel, Form } from "react-bootstrap";
 
 interface ISourceFormData {
   title: string;
@@ -51,60 +51,72 @@ export default function SourceForm({ initialData, onSubmit }: IPSourceFormProps)
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formSourceTitle">
+      <Form.Group className="mb-3 d-flex flex-column gap-2" controlId="formSourceTitle">
         <Form.Label>{initialData ? "Edit Source" : "New Source"}</Form.Label>
-        <Form.Control
-          type="text"
-          name="title"
-          placeholder="Enter title"
-          value={sourceFormData.title}
-          onChange={handleInputChange}
-        />
-        <Form.Control
-          type="text"
-          name="author"
-          placeholder="Enter author"
-          value={sourceFormData.author}
-          onChange={handleInputChange}
-        />
-        <Form.Control
-          type="text"
-          name="description"
-          placeholder="Enter description"
-          value={sourceFormData.description}
-          onChange={handleInputChange}
-        />
-        <Form.Control
-          type="text"
-          name="source"
-          placeholder="Enter source"
-          value={sourceFormData.source}
-          onChange={handleInputChange}
-        />
-        <Form.Select
-          aria-label="Select source type"
-          value={sourceFormData.type}
-          onChange={handleInputChange}
-          name="type"
-        >
-          {/* TODO fetch this stuff */}
-          <option>Select a source type</option>
-          <option value="Book">Book</option>
-          <option value="Article">Article</option>
-          <option value="Website">Website</option>
-        </Form.Select>
-        <Form.Select
-          aria-label="Select source topic"
-          value={sourceFormData.topic}
-          onChange={handleInputChange}
-          name="topic"
-        >
-          {/* TODO fetch this stuff */}
-          <option>Select a source topic</option>
-          <option value="Artificial Intelligence">Artificial Intelligence</option>
-          <option value="Evolutionary Psychology">Evolutionary Psychology</option>
-          <option value="Python">Python</option>
-        </Form.Select>
+        <FloatingLabel controlId="floatingTitle" label="Title">
+          <Form.Control
+            type="text"
+            name="title"
+            placeholder="Enter title"
+            value={sourceFormData.title}
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingAuthor" label="Author">
+          <Form.Control
+            type="text"
+            name="author"
+            placeholder="Enter author"
+            value={sourceFormData.author}
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingDescription" label="Description">
+          <Form.Control
+            type="text"
+            name="description"
+            placeholder="Enter description"
+            value={sourceFormData.description}
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingSource" label="Source">
+          <Form.Control
+            type="text"
+            name="source"
+            placeholder="Enter source"
+            value={sourceFormData.source}
+            onChange={handleInputChange}
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingSelectSourceType" label="Source Type">
+          <Form.Select
+            aria-label="Select source type"
+            value={sourceFormData.type}
+            onChange={handleInputChange}
+            name="type"
+          >
+            {/* TODO fetch this stuff */}
+            <option>Select a source type</option>
+            <option value="Book">Book</option>
+            <option value="Article">Article</option>
+            <option value="Website">Website</option>
+          </Form.Select>
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingSelectSourceTopic" label="Source Topic">
+          <Form.Select
+            aria-label="Select source topic"
+            value={sourceFormData.topic}
+            onChange={handleInputChange}
+            name="topic"
+          >
+            {/* TODO fetch this stuff */}
+            <option>Select a source topic</option>
+            <option value="Artificial Intelligence">Artificial Intelligence</option>
+            <option value="Evolutionary Psychology">Evolutionary Psychology</option>
+            <option value="Python">Python</option>
+          </Form.Select>
+        </FloatingLabel>
       </Form.Group>
       <Button type="submit">{initialData ? "Update" : "Submit"}</Button>
     </Form>
