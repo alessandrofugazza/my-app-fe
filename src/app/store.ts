@@ -1,9 +1,9 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import counterSlice from "../features/counter/counterSlice";
+import projectSlice from "../pages/projects/projectSlice";
 
 const rootReducer = combineReducers({
-  counter: counterSlice,
+  project: projectSlice,
 });
 
 export const store = configureStore({
