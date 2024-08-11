@@ -19,7 +19,7 @@ export default function HomePage() {
             <span className="ms-auto">{formattedCurrentDate}</span>
           </div>
           <Card.Text className="fs-2">
-            <span>Love yourself</span>
+            <span>Don't do drugs</span>
           </Card.Text>
         </Card.Body>
       </Card>

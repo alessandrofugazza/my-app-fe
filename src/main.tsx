@@ -10,6 +10,9 @@ import ProgressPage from "./pages/progress/ProgressPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import LearnPage from "./pages/learn/LearnPage.tsx";
 import NotesPage from "./pages/notes/NotesPage.tsx";
+import { Provider } from "react-redux";
+import ReduxTestPage from "./redux-test/ReduxTestPage.tsx";
+import { store } from "./app/store.ts";
 
 const router = createBrowserRouter([
   {
@@ -41,14 +44,21 @@ const router = createBrowserRouter([
         path: "notes",
         element: <NotesPage />,
       },
+      {
+        path: "redux-test",
+        element: <ReduxTestPage />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    {/* CHECK meh */}
+    <Provider store={store}>
+      {/* CHECK meh */}
 
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
+    </Provider>
+    ,
   </React.StrictMode>
 );
