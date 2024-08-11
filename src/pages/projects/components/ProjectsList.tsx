@@ -4,6 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { IAProject } from "../../../types/api/IAProject";
 import { Button } from "react-bootstrap";
 import ProjectForm from "./ProjectForm";
+import ProjectDetail from "./ProjectDetail";
 
 export default function ProjectsList() {
   const [projects, setProjects] = useState<IAProject[]>([]);
@@ -59,12 +60,17 @@ export default function ProjectsList() {
     }
   };
 
+  const [selectedProject, setSelectedProject] = useState<IAProject | null>(null);
+  const handleProjectClick = (project: IAProject) => {
+    setSelectedProject(project);
+  };
+
   return (
     <>
       <div className="d-flex flex-column gap-3">
         <ListGroup>
           {projects.map((project) => (
-            <ListGroup.Item key={project.id} className="d-flex">
+            <ListGroup.Item key={project.id} className="d-flex" onClick={() => handleProjectClick(project)}>
               <div className="flex-grow-1">
                 <div className="fw-bold">{project.title}</div>
                 {project.description}
@@ -81,6 +87,11 @@ export default function ProjectsList() {
       {(isAddingProject || editingProject) && (
         <div className="mt-5">
           <ProjectForm initialData={editingProject || { title: "", description: "" }} onSubmit={handleFormSubmit} />
+        </div>
+      )}
+      {selectedProject && (
+        <div className="mt-5">
+          <ProjectDetail project={selectedProject} />
         </div>
       )}
     </>
