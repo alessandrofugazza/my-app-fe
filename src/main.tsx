@@ -12,6 +12,7 @@ import LearnPage from "./pages/learn/LearnPage.tsx";
 import NotesPage from "./pages/notes/NotesPage.tsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
+import PlaygroundPage from "./pages/PlaygroundPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
       {
         path: "notes",
         element: <NotesPage />,
+      },
+      {
+        path: "notes",
+        element: <NotesPage />,
+      },
+      {
+        path: "playground",
+        element: <PlaygroundPage />,
       },
     ],
   },
