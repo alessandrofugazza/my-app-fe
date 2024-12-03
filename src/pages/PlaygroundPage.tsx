@@ -1,28 +1,16 @@
-import { Card, Stack } from "react-bootstrap";
+const welcome = {
+  greeting: "Welcome to the playground",
+  subtitle: "Who told you what was down here?",
+};
 
 export default function PlaygroundPage() {
   return (
-    <>
-      <div>
-        <h2 className="mb-4">Playground list title</h2>
-        <Stack gap={3}>
-          <Card className="interactive-card">
-            <Card.Body>
-              <Card.Text>TEST!</Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className="interactive-card">
-            <Card.Body>
-              <Card.Text>TEST 2!</Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className="interactive-card">
-            <Card.Body>
-              <Card.Text>TEST 3!</Card.Text>
-            </Card.Body>
-          </Card>
-        </Stack>
-      </div>
-    </>
+    <div>
+      <h1>
+        {welcome.greeting} {welcome.subtitle}
+      </h1>
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
+    </div>
   );
 }
