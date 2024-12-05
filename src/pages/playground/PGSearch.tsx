@@ -6,10 +6,14 @@ export default function PGSearch() {
     console.log(event.target.value);
   };
 
+  const handleBlur = () => {
+    console.log("blurred");
+  };
+
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleChange} />
+      <input id="search" type="text" onChange={handleChange} onBlur={handleBlur} />
     </div>
   );
 }

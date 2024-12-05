@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Placeholder, Spinner } from "react-bootstrap";
 
 interface IApiTests {
   id: string;
@@ -40,7 +40,9 @@ export default function ApiTestsList() {
           </li>
         ))
       ) : (
-        <Spinner animation="border" />
+        <Placeholder as="span" animation="glow">
+          <Placeholder xs={3} />
+        </Placeholder>
       )}
     </ul>
   );
