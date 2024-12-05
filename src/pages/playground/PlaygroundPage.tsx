@@ -1,4 +1,5 @@
 import ApiTestsList from "./ApiTestsList";
+import PGSearch from "./PGSearch";
 
 const welcome = {
   greeting: "Welcome to the playground",
@@ -30,8 +31,8 @@ export default function PlaygroundPage() {
       <h1>
         {welcome.greeting} {welcome.subtitle}
       </h1>
-      {/* <label htmlFor="search">Search: </label>
-      <input id="search" type="text" /> */}
+      <hr />
+      <PGSearch />
       <hr />
       <ApiTestsList />
     </div>

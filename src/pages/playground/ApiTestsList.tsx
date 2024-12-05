@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 
 interface IApiTests {
   id: string;
@@ -26,17 +27,21 @@ export default function ApiTestsList() {
 
   return (
     <ul>
-      {apiTests.map((item) => (
-        <li key={item.id}>
-          <span>{item.title}</span>
-          {/* <span>
+      {apiTests.length > 0 ? (
+        apiTests.map((item) => (
+          <li key={item.id}>
+            <span>{item.title}</span>
+            {/* <span>
                 <a href={item.url}>{item.title}</a>
               </span>
               <span>{item.author}</span>
               <span>{item.num_comments}</span>
               <span>{item.points}</span> */}
-        </li>
-      ))}
+          </li>
+        ))
+      ) : (
+        <Spinner animation="border" />
+      )}
     </ul>
   );
 }
