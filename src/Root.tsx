@@ -7,7 +7,7 @@ export default function Root() {
   return (
     <div className="d-flex flex-column h-100">
       <AppNavbar />
-      <Container className="py-5 my-auto">
+      <Container className="py-5">
         <Outlet />
       </Container>
     </div>
