@@ -2,15 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Placeholder, Spinner } from "react-bootstrap";
 
-interface IApiTests {
+type TApiTests = {
   id: string;
   title: string;
   created_at: string;
   updated_at: string;
-}
+};
 
 export default function ApiTestsList() {
-  const [apiTests, setApiTests] = useState<IApiTests[]>([]);
+  const [apiTests, setApiTests] = useState<TApiTests[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchApiTests = async () => {
