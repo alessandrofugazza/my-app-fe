@@ -1,5 +1,8 @@
+import { TApiTest } from "../../types/TApiTest";
 import ApiTestsList from "./ApiTestsList";
 import PGSearch from "./PGSearch";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const welcome = {
   greeting: "Welcome to the playground",
@@ -26,6 +29,23 @@ const welcome = {
 // ];
 
 export default function PlaygroundPage() {
+  const [apiTests, setApiTests] = useState<TApiTest[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchApiTests = async () => {
+    try {
+      const re = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`);
+      setApiTests(re.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("There was an error fetching the Api Tests!", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchApiTests();
+  }, []);
+
   return (
     <div>
       <h1>
@@ -34,7 +54,7 @@ export default function PlaygroundPage() {
       <hr />
       <PGSearch />
       <hr />
-      <ApiTestsList />
+      <ApiTestsList isLoading={isLoading} apiTests={apiTests} />
     </div>
   );
 }
