@@ -6,7 +6,7 @@ type ApiTestListProps = {
   apiTests: TApiTest[];
 };
 
-export default function ApiTestsList(props: ApiTestListProps) {
+export default function ApiTestList(props: ApiTestListProps) {
   return (
     <ul>
       {props.isLoading

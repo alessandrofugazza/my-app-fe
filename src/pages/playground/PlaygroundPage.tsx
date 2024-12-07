@@ -1,5 +1,6 @@
 import { TApiTest } from "../../types/TApiTest";
-import ApiTestsList from "./ApiTestsList";
+import ApiTestForm from "./ApiTestForm";
+import ApiTestList from "./ApiTestList";
 import PGSearch from "./PGSearch";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -54,7 +55,9 @@ export default function PlaygroundPage() {
       <hr />
       <PGSearch />
       <hr />
-      <ApiTestsList isLoading={isLoading} apiTests={apiTests} />
+      <ApiTestList isLoading={isLoading} apiTests={apiTests} />
+      <hr />
+      <ApiTestForm />
     </div>
   );
 }
