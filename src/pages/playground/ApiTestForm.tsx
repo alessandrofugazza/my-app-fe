@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 
@@ -20,8 +21,18 @@ export default function ApiTestForm() {
     });
   };
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`, formData);
+      console.log("Apitest added:", formData);
+    } catch (error) {
+      console.error("There was an error submitting the Apitest!", error);
+    }
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="apiTestTitle">
         <Form.Label>Title</Form.Label>
         <Form.Control

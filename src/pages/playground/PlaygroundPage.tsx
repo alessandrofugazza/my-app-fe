@@ -1,4 +1,4 @@
-import { TApiTest } from "../../types/TApiTest";
+import { ApiTest } from "../../types/ApiTest";
 import ApiTestForm from "./ApiTestForm";
 import ApiTestList from "./ApiTestList";
 import PGSearch from "./PGSearch";
@@ -30,7 +30,7 @@ const welcome = {
 // ];
 
 export default function PlaygroundPage() {
-  const [apiTests, setApiTests] = useState<TApiTest[]>([]);
+  const [apiTests, setApiTests] = useState<ApiTest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchApiTests = async () => {
