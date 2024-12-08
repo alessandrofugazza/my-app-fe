@@ -33,6 +33,14 @@ export default function PlaygroundPage() {
   const [apiTests, setApiTests] = useState<ApiTest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const searchedApiTests = apiTests.filter((apiTest) => apiTest.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
   const fetchApiTests = async () => {
     try {
       const re = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`);
@@ -53,9 +61,9 @@ export default function PlaygroundPage() {
         {welcome.greeting} {welcome.subtitle}
       </h1>
       <hr />
-      <PGSearch />
+      <PGSearch onSearch={handleSearch} />
       <hr />
-      <ApiTestList isLoading={isLoading} apiTests={apiTests} />
+      <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} />
       <hr />
       <ApiTestForm />
     </div>

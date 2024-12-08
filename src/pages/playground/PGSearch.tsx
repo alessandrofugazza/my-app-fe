@@ -1,22 +1,15 @@
-import { useState } from "react";
+type PGSearchProps = {
+  onSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-export default function PGSearch() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleBlur = () => {
-    console.log("blurred");
-  };
-
+export default function PGSearch(props: PGSearchProps) {
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleChange} onBlur={handleBlur} />
-      <p>
+      <input id="search" type="text" onChange={props.onSearch} />
+      {/* <p>
         Searching for <strong>{searchTerm}</strong>.
-      </p>
+      </p> */}
     </div>
   );
 }
