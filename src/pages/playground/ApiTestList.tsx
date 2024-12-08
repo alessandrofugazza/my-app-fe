@@ -1,4 +1,4 @@
-import { Placeholder, Stack } from "react-bootstrap";
+import { Alert, Placeholder, Stack } from "react-bootstrap";
 import { ApiTest } from "../../types/ApiTest";
 import ApiTestCard from "./ApiTestCard";
 
@@ -18,6 +18,8 @@ export default function ApiTestList(props: ApiTestListProps) {
             </Placeholder>
           </li>
         ))
+      ) : props.apiTests.length === 0 ? (
+        <Alert variant="light">No results.</Alert>
       ) : (
         <Stack gap={3}>
           {props.apiTests.map((apiTest) => (

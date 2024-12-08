@@ -61,7 +61,7 @@ export default function PlaygroundPage() {
         {welcome.greeting} {welcome.subtitle}
       </h1>
       <hr />
-      <PGSearch onSearch={handleSearch} />
+      <PGSearch onSearch={handleSearch} search={searchTerm} />
       <hr />
       <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} />
       <hr />
