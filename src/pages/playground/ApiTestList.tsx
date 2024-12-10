@@ -7,10 +7,10 @@ type ApiTestListProps = {
   apiTests: ApiTest[];
 };
 
-export default function ApiTestList(props: ApiTestListProps) {
+export default function ApiTestList({ isLoading, apiTests }: ApiTestListProps) {
   return (
     <ul>
-      {props.isLoading ? (
+      {isLoading ? (
         Array.from({ length: 4 }).map((_, index) => (
           <li key={index}>
             <Placeholder as="span" animation="glow">
@@ -18,11 +18,11 @@ export default function ApiTestList(props: ApiTestListProps) {
             </Placeholder>
           </li>
         ))
-      ) : props.apiTests.length === 0 ? (
+      ) : apiTests.length === 0 ? (
         <Alert variant="light">No results.</Alert>
       ) : (
         <Stack gap={3}>
-          {props.apiTests.map((apiTest) => (
+          {apiTests.map((apiTest) => (
             <ApiTestCard key={apiTest.id} apiTest={apiTest} />
           ))}
         </Stack>

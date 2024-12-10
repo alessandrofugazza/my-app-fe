@@ -3,11 +3,11 @@ type PGSearchProps = {
   search: string;
 };
 
-export default function PGSearch(props: PGSearchProps) {
+export default function PGSearch({ onSearch, search }: PGSearchProps) {
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={props.onSearch} value={props.search} />
+      <input id="search" type="text" onChange={onSearch} value={search} />
       {/* <p>
         Searching for <strong>{searchTerm}</strong>.
       </p> */}
