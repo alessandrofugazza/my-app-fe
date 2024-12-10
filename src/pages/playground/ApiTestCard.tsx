@@ -2,15 +2,16 @@ import { Card } from "react-bootstrap";
 import { ApiTest } from "../../types/ApiTest";
 
 type ApiTestCardProps = {
-  apiTest: ApiTest;
+  title: string;
+  subtitle: string;
 };
 
-export default function ApiTestCard({ apiTest }: ApiTestCardProps) {
+export default function ApiTestCard({ title, subtitle }: ApiTestCardProps) {
   return (
     <Card className="interactive-card">
       <Card.Body>
-        <Card.Title>{apiTest.title}</Card.Title>
-        <Card.Subtitle className="text-muted">{apiTest.subtitle}</Card.Subtitle>
+        <Card.Title>{title}</Card.Title>
+        <Card.Subtitle className="text-muted">{subtitle}</Card.Subtitle>
       </Card.Body>
     </Card>
   );

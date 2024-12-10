@@ -22,8 +22,8 @@ export default function ApiTestList({ isLoading, apiTests }: ApiTestListProps) {
         <Alert variant="light">No results.</Alert>
       ) : (
         <Stack gap={3}>
-          {apiTests.map((apiTest) => (
-            <ApiTestCard key={apiTest.id} apiTest={apiTest} />
+          {apiTests.map(({ id, ...apiTest }) => (
+            <ApiTestCard key={id} {...apiTest} />
           ))}
         </Stack>
       )}
