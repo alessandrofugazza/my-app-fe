@@ -29,15 +29,26 @@ const welcome = {
 //   },
 // ];
 
+const useStorageState = (key: string, initialState: string) => {
+  const [value, setValue] = useState(localStorage.getItem(key) || initialState);
+
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value, key]);
+
+  return [value, setValue] as const;
+};
+
 export default function PlaygroundPage() {
   const [apiTests, setApiTests] = useState<ApiTest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [searchTerm, setSearchTerm] = useState(localStorage.getItem("search") || "");
+  const [searchTerm, setSearchTerm] = useStorageState("search", "");
+  // const [searchTerm, setSearchTerm] = useState(localStorage.getItem("search") || "");
 
-  useEffect(() => {
-    localStorage.setItem("search", searchTerm);
-  }, [searchTerm]);
+  // useEffect(() => {
+  //   localStorage.setItem("search", searchTerm);
+  // }, [searchTerm]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
