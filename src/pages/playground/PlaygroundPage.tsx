@@ -4,6 +4,7 @@ import ApiTestList from "./ApiTestList";
 import PGSearch from "./PGSearch";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import InputWithLabel from "./InputWithLabel";
 
 const welcome = {
   greeting: "Welcome to the playground",
@@ -76,7 +77,8 @@ export default function PlaygroundPage() {
         {welcome.greeting} {welcome.subtitle}
       </h1>
       <hr />
-      <PGSearch onSearch={handleSearch} search={searchTerm} />
+      {/* <PGSearch onSearch={handleSearch} search={searchTerm} /> */}
+      <InputWithLabel id="search" label="Search" value={searchTerm} onInputChange={handleSearch} />
       <hr />
       <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} />
       <hr />
