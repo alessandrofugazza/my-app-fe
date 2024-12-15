@@ -78,7 +78,9 @@ export default function PlaygroundPage() {
       </h1>
       <hr />
       {/* <PGSearch onSearch={handleSearch} search={searchTerm} /> */}
-      <InputWithLabel id="search" label="Search" value={searchTerm} onInputChange={handleSearch} />
+      <InputWithLabel id="search" value={searchTerm} onInputChange={handleSearch}>
+        <strong>Search:</strong>
+      </InputWithLabel>
       <hr />
       <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} />
       <hr />

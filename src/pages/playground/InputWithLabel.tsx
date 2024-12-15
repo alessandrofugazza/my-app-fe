@@ -1,15 +1,15 @@
 type InputWithLabelProps = {
   id: string;
-  label: string;
   value: string;
   type?: string;
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  children: React.ReactNode;
 };
 
-export default function InputWithLabel({ id, label, value, type = "text", onInputChange }: InputWithLabelProps) {
+export default function InputWithLabel({ id, value, type = "text", onInputChange, children }: InputWithLabelProps) {
   return (
     <>
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>{children}</label>
       &nbsp;
       <input id={id} type={type} value={value} onChange={onInputChange} />
     </>
