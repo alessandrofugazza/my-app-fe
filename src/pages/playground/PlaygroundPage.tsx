@@ -78,7 +78,7 @@ export default function PlaygroundPage() {
       </h1>
       <hr />
       {/* <PGSearch onSearch={handleSearch} search={searchTerm} /> */}
-      <InputWithLabel id="search" value={searchTerm} onInputChange={handleSearch}>
+      <InputWithLabel id="search" value={searchTerm} onInputChange={handleSearch} isFocused>
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
