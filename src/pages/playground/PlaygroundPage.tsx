@@ -88,7 +88,8 @@ export default function PlaygroundPage() {
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
-      <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} />
+      <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} onRemoveApiTest={handleRemoveApiTest} />
+
       <hr />
       <ApiTestForm />
     </div>

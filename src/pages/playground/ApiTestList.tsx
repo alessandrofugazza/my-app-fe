@@ -5,9 +5,10 @@ import ApiTestCard from "./ApiTestCard";
 type ApiTestListProps = {
   isLoading: boolean;
   apiTests: ApiTest[];
+  onRemoveApiTest: (apiTest: ApiTest) => void;
 };
 
-export default function ApiTestList({ isLoading, apiTests }: ApiTestListProps) {
+export default function ApiTestList({ isLoading, apiTests, onRemoveApiTest }: ApiTestListProps) {
   return (
     <ul>
       {isLoading ? (
@@ -22,8 +23,8 @@ export default function ApiTestList({ isLoading, apiTests }: ApiTestListProps) {
         <Alert variant="light">No results.</Alert>
       ) : (
         <Stack gap={3}>
-          {apiTests.map(({ id, ...apiTest }) => (
-            <ApiTestCard key={id} {...apiTest} />
+          {apiTests.map((apiTest) => (
+            <ApiTestCard key={apiTest.id} apiTest={apiTest} onRemoveApiTest={onRemoveApiTest} />
           ))}
         </Stack>
       )}
