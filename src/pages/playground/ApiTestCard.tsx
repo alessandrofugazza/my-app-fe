@@ -1,4 +1,4 @@
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Stack } from "react-bootstrap";
 import { ApiTest } from "../../types/ApiTest";
 
 type ApiTestCardProps = {
@@ -10,11 +10,15 @@ export default function ApiTestCard({ apiTest, onRemoveApiTest }: ApiTestCardPro
   return (
     <Card className="interactive-card">
       <Card.Body>
-        <Card.Title>{apiTest.title}</Card.Title>
-        <Card.Subtitle className="text-muted">{apiTest.subtitle}</Card.Subtitle>
-        <Button variant="light" onClick={() => onRemoveApiTest(apiTest.id)}>
-          Dismiss
-        </Button>
+        <Stack direction="horizontal">
+          <div>
+            <Card.Title>{apiTest.title}</Card.Title>
+            <Card.Subtitle className="text-muted">{apiTest.subtitle}</Card.Subtitle>
+          </div>
+          <Button variant="light" onClick={() => onRemoveApiTest(apiTest.id)} className="ms-auto">
+            Dismiss
+          </Button>
+        </Stack>
       </Card.Body>
     </Card>
   );
