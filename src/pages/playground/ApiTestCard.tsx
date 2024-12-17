@@ -12,6 +12,11 @@ export default function ApiTestCard({ apiTest, onRemoveApiTest }: ApiTestCardPro
       <Card.Body>
         <Card.Title>{apiTest.title}</Card.Title>
         <Card.Subtitle className="text-muted">{apiTest.subtitle}</Card.Subtitle>
+        <span>
+          <button type="button" onClick={() => onRemoveApiTest(apiTest)}>
+            Dismiss
+          </button>
+        </span>
       </Card.Body>
     </Card>
   );
