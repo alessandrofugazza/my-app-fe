@@ -1,7 +1,6 @@
 import { ApiTest } from "../../types/ApiTest";
 import ApiTestForm from "./ApiTestForm";
 import ApiTestList from "./ApiTestList";
-import PGSearch from "./PGSearch";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
@@ -10,25 +9,6 @@ const welcome = {
   greeting: "Welcome to the playground",
   subtitle: "Who told you what was down here?",
 };
-
-// const list = [
-//   {
-//     title: "React",
-//     url: "https://reactjs.org/",
-//     author: "Jordan Walke",
-//     num_comments: 3,
-//     points: 4,
-//     objectID: 0,
-//   },
-//   {
-//     title: "Redux",
-//     url: "https://redux.js.org/",
-//     author: "Dan Abramov, Andrew Clark",
-//     num_comments: 2,
-//     points: 5,
-//     objectID: 1,
-//   },
-// ];
 
 const useStorageState = (key: string, initialState: string) => {
   const [value, setValue] = useState(localStorage.getItem(key) || initialState);
@@ -55,10 +35,13 @@ export default function PlaygroundPage() {
     setSearchTerm(event.target.value);
   };
 
-  const handleRemoveApiTest = (apiTestToRemove: ApiTest) => {
-    const newApiTests = apiTests.filter((apiTest) => apiTest.id !== apiTestToRemove.id);
-
-    setApiTests(newApiTests);
+  const handleRemoveApiTest = async (apiTestId: string) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/${apiTestId}`);
+      setApiTests(apiTests.filter((test) => test.id !== apiTestId));
+    } catch (error) {
+      console.error("Failed to delete the API test:", error);
+    }
   };
 
   const searchedApiTests = apiTests.filter((apiTest) => apiTest.title.toLowerCase().includes(searchTerm.toLowerCase()));

@@ -5,7 +5,7 @@ import ApiTestCard from "./ApiTestCard";
 type ApiTestListProps = {
   isLoading: boolean;
   apiTests: ApiTest[];
-  onRemoveApiTest: (apiTest: ApiTest) => void;
+  onRemoveApiTest: (apiTestId: string) => void;
 };
 
 export default function ApiTestList({ isLoading, apiTests, onRemoveApiTest }: ApiTestListProps) {
