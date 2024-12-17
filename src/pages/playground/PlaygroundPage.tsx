@@ -55,6 +55,12 @@ export default function PlaygroundPage() {
     setSearchTerm(event.target.value);
   };
 
+  const handleRemoveApiTest = (apiTestToRemove: ApiTest) => {
+    const newApiTests = apiTests.filter((apiTest) => apiTest.id !== apiTestToRemove.id);
+
+    setApiTests(newApiTests);
+  };
+
   const searchedApiTests = apiTests.filter((apiTest) => apiTest.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   const fetchApiTests = async () => {
