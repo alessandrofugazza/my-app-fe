@@ -24,6 +24,7 @@ const useStorageState = (key: string, initialState: string) => {
 export default function PlaygroundPage() {
   const [apiTests, setApiTests] = useState<ApiTest[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const [searchTerm, setSearchTerm] = useStorageState("search", "");
 
@@ -36,6 +37,7 @@ export default function PlaygroundPage() {
       await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/${apiTestId}`);
       setApiTests(apiTests.filter((test) => test.id !== apiTestId));
     } catch (error) {
+      setIsError(true);
       console.error("Failed to delete the API test:", error);
     }
   };
@@ -66,10 +68,13 @@ export default function PlaygroundPage() {
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
+      {isError && <p>There was an error!</p>}
       {isLoading ? (
-        <Spinner animation="border" role="status" variant="light">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        <div className="d-flex py-5">
+          <Spinner animation="border" role="status" variant="light" className="m-auto">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
       ) : (
         <ApiTestList apiTests={searchedApiTests} onRemoveApiTest={handleRemoveApiTest} />
       )}
