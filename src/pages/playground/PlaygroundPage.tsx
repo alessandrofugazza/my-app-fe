@@ -22,14 +22,9 @@ const useStorageState = (key: string, initialState: string) => {
 
 export default function PlaygroundPage() {
   const [apiTests, setApiTests] = useState<ApiTest[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [searchTerm, setSearchTerm] = useStorageState("search", "");
-  // const [searchTerm, setSearchTerm] = useState(localStorage.getItem("search") || "");
-
-  // useEffect(() => {
-  //   localStorage.setItem("search", searchTerm);
-  // }, [searchTerm]);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -57,22 +52,20 @@ export default function PlaygroundPage() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetchApiTests();
   }, []);
 
   return (
     <div>
-      <h1>
-        {welcome.greeting} {welcome.subtitle}
-      </h1>
+      <h1>{welcome.greeting}</h1>
+      <h2> {welcome.subtitle}</h2>
       <hr />
-      {/* <PGSearch onSearch={handleSearch} search={searchTerm} /> */}
       <InputWithLabel id="search" value={searchTerm} onInputChange={handleSearch} isFocused>
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
       <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} onRemoveApiTest={handleRemoveApiTest} />
-
       <hr />
       <ApiTestForm />
     </div>

@@ -1,4 +1,4 @@
-import { Alert, Placeholder, Stack } from "react-bootstrap";
+import { Alert, Placeholder, Spinner, Stack } from "react-bootstrap";
 import { ApiTest } from "../../types/ApiTest";
 import ApiTestCard from "./ApiTestCard";
 
@@ -12,13 +12,9 @@ export default function ApiTestList({ isLoading, apiTests, onRemoveApiTest }: Ap
   return (
     <ul>
       {isLoading ? (
-        Array.from({ length: 4 }).map((_, index) => (
-          <li key={index}>
-            <Placeholder as="span" animation="glow">
-              <Placeholder xs={3} />
-            </Placeholder>
-          </li>
-        ))
+        <Spinner animation="border" role="status" variant="light">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
       ) : apiTests.length === 0 ? (
         <Alert variant="light">No results.</Alert>
       ) : (
