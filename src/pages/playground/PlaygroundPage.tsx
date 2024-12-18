@@ -4,6 +4,7 @@ import ApiTestList from "./ApiTestList";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import { Spinner } from "react-bootstrap";
 
 const welcome = {
   greeting: "Welcome to the playground",
@@ -65,7 +66,13 @@ export default function PlaygroundPage() {
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
-      <ApiTestList isLoading={isLoading} apiTests={searchedApiTests} onRemoveApiTest={handleRemoveApiTest} />
+      {isLoading ? (
+        <Spinner animation="border" role="status" variant="light">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      ) : (
+        <ApiTestList apiTests={searchedApiTests} onRemoveApiTest={handleRemoveApiTest} />
+      )}
       <hr />
       <ApiTestForm />
     </div>
