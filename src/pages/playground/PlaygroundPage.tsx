@@ -23,13 +23,16 @@ const useStorageState = (key: string, initialState: string) => {
 
 type ApiTestsState = ApiTest[];
 
+const SET_APITESTS = "SET_APITESTS";
+const REMOVE_APITEST = "REMOVE_APITEST";
+
 type ApiTestsSetAction = {
-  type: "SET_APITESTS";
+  type: typeof SET_APITESTS;
   payload: ApiTest[];
 };
 
 type ApiTestsRemoveAction = {
-  type: "REMOVE_APITEST";
+  type: typeof REMOVE_APITEST;
   payload: string;
 };
 
@@ -37,9 +40,9 @@ type ApiTestsAction = ApiTestsSetAction | ApiTestsRemoveAction;
 
 const apiTestsReducer = (state: ApiTestsState, action: ApiTestsAction) => {
   switch (action.type) {
-    case "SET_APITESTS":
+    case SET_APITESTS:
       return action.payload;
-    case "REMOVE_APITEST":
+    case REMOVE_APITEST:
       return state.filter((apiTest) => apiTest.id !== action.payload);
     default:
       throw new Error("Unknown action type");
@@ -62,7 +65,7 @@ export default function PlaygroundPage() {
     try {
       await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/${apiTestId}`);
       // setApiTests(apiTests.filter((test) => test.id !== apiTestId));
-      dispatchApiTests({ type: "REMOVE_APITEST", payload: apiTestId });
+      dispatchApiTests({ type: REMOVE_APITEST, payload: apiTestId });
     } catch (error) {
       setIsError(true);
       console.error("Failed to delete the API test:", error);
@@ -74,7 +77,7 @@ export default function PlaygroundPage() {
   const fetchApiTests = async () => {
     try {
       const re = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`);
-      dispatchApiTests({ type: "SET_APITESTS", payload: re.data });
+      dispatchApiTests({ type: SET_APITESTS, payload: re.data });
       // setApiTests(re.data);
       setIsLoading(false);
     } catch (error) {
