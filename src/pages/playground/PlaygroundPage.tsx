@@ -21,14 +21,28 @@ const useStorageState = (key: string, initialState: string) => {
   return [value, setValue] as const;
 };
 
-type ApiTestsState = ApiTest[];
+type ApiTestsState = {
+  data: ApiTest[];
+  isLoading: boolean;
+  isError: boolean;
+};
 
-const SET_APITESTS = "SET_APITESTS";
+const APITESTS_FETCH_INIT = "APITESTS_FETCH_INIT";
+const APITESTS_FETCH_SUCCESS = "APITESTS_FETCH_SUCCESS";
+const APITESTS_FETCH_FAILURE = "APITESTS_FETCH_FAILURE";
 const REMOVE_APITEST = "REMOVE_APITEST";
 
-type ApiTestsSetAction = {
-  type: typeof SET_APITESTS;
+type ApiTestsFetchInitAction = {
+  type: typeof APITESTS_FETCH_INIT;
+};
+
+type ApiTestsFetchSuccessAction = {
+  type: typeof APITESTS_FETCH_SUCCESS;
   payload: ApiTest[];
+};
+
+type ApiTestsFetchFailureAction = {
+  type: typeof APITESTS_FETCH_FAILURE;
 };
 
 type ApiTestsRemoveAction = {
@@ -36,24 +50,45 @@ type ApiTestsRemoveAction = {
   payload: string;
 };
 
-type ApiTestsAction = ApiTestsSetAction | ApiTestsRemoveAction;
+type ApiTestsAction =
+  | ApiTestsFetchInitAction
+  | ApiTestsFetchSuccessAction
+  | ApiTestsFetchFailureAction
+  | ApiTestsRemoveAction;
 
 const apiTestsReducer = (state: ApiTestsState, action: ApiTestsAction) => {
   switch (action.type) {
-    case SET_APITESTS:
-      return action.payload;
+    case APITESTS_FETCH_INIT:
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case APITESTS_FETCH_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload,
+      };
+    case APITESTS_FETCH_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
     case REMOVE_APITEST:
-      return state.filter((apiTest) => apiTest.id !== action.payload);
+      return {
+        ...state,
+        data: state.data.filter((test) => test.id !== action.payload),
+      };
     default:
       throw new Error("Unknown action type");
   }
 };
 
 export default function PlaygroundPage() {
-  // const [apiTests, setApiTests] = useState<ApiTest[]>([]);
-  const [apiTests, dispatchApiTests] = useReducer(apiTestsReducer, []);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [apiTests, dispatchApiTests] = useReducer(apiTestsReducer, { data: [], isLoading: false, isError: false });
 
   const [searchTerm, setSearchTerm] = useStorageState("search", "");
 
@@ -64,29 +99,28 @@ export default function PlaygroundPage() {
   const handleRemoveApiTest = async (apiTestId: string) => {
     try {
       await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/${apiTestId}`);
-      // setApiTests(apiTests.filter((test) => test.id !== apiTestId));
       dispatchApiTests({ type: REMOVE_APITEST, payload: apiTestId });
     } catch (error) {
-      setIsError(true);
-      console.error("Failed to delete the API test:", error);
+      dispatchApiTests({ type: APITESTS_FETCH_FAILURE }); // CHECK are we sure about this
+      console.error("Failed to delete the API test:", error); // implement clog in reducer?
     }
   };
 
-  const searchedApiTests = apiTests.filter((apiTest) => apiTest.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  const searchedApiTests = apiTests.data.filter((apiTest) =>
+    apiTest.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const fetchApiTests = async () => {
     try {
       const re = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`);
-      dispatchApiTests({ type: SET_APITESTS, payload: re.data });
-      // setApiTests(re.data);
-      setIsLoading(false);
+      dispatchApiTests({ type: APITESTS_FETCH_SUCCESS, payload: re.data });
     } catch (error) {
-      console.error("There was an error fetching the Api Tests!", error);
+      dispatchApiTests({ type: APITESTS_FETCH_FAILURE });
     }
   };
 
   useEffect(() => {
-    setIsLoading(true);
+    dispatchApiTests({ type: APITESTS_FETCH_INIT });
     fetchApiTests();
   }, []);
 
@@ -99,8 +133,8 @@ export default function PlaygroundPage() {
         <strong>Search:</strong>
       </InputWithLabel>
       <hr />
-      {isError && <p>There was an error!</p>}
-      {isLoading ? (
+      {apiTests.isError && <p>There was an error!</p>}
+      {apiTests.isLoading ? (
         <div className="d-flex py-5">
           <Spinner animation="border" role="status" variant="light" className="m-auto">
             <span className="visually-hidden">Loading...</span>
