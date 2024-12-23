@@ -6,6 +6,8 @@ import { useEffect, useReducer, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { Spinner } from "react-bootstrap";
 
+const API_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`;
+
 const welcome = {
   greeting: "Welcome to the playground",
   subtitle: "Who told you what was down here?",
@@ -98,7 +100,7 @@ export default function PlaygroundPage() {
 
   const handleRemoveApiTest = async (apiTestId: string) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/${apiTestId}`);
+      await axios.delete(`${API_ENDPOINT}${apiTestId}`);
       dispatchApiTests({ type: REMOVE_APITEST, payload: apiTestId });
     } catch (error) {
       dispatchApiTests({ type: APITESTS_FETCH_FAILURE }); // CHECK are we sure about this
@@ -112,7 +114,7 @@ export default function PlaygroundPage() {
 
   const fetchApiTests = async () => {
     try {
-      const re = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`);
+      const re = await axios.get(`${API_ENDPOINT}`);
       dispatchApiTests({ type: APITESTS_FETCH_SUCCESS, payload: re.data });
     } catch (error) {
       dispatchApiTests({ type: APITESTS_FETCH_FAILURE });
