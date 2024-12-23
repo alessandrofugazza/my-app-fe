@@ -123,7 +123,16 @@ export default function PlaygroundPage() {
 
   useEffect(() => {
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
-    fetchApiTests();
+    // fetchApiTests();
+    fetch(`${API_ENDPOINT}`) // B
+      .then((response) => response.json()) // C
+      .then((result) => {
+        dispatchApiTests({
+          type: "APITESTS_FETCH_SUCCESS",
+          payload: result,
+        });
+      })
+      .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
   }, []);
 
   return (
