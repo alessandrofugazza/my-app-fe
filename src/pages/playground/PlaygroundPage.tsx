@@ -92,10 +92,14 @@ const apiTestsReducer = (state: ApiTestsState, action: ApiTestsAction) => {
 export default function PlaygroundPage() {
   const [apiTests, dispatchApiTests] = useReducer(apiTestsReducer, { data: [], isLoading: false, isError: false });
 
-  const [clientSearchTerm, setSearchTerm] = useStorageState("search", "");
+  const [clientSearchTerm, setClientSearchTerm] = useStorageState("clientSearch", "");
+  const [serverSearchTerm, setServerSearchTerm] = useStorageState("serverSearch", "");
 
   const handleClientSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setClientSearchTerm(event.target.value);
+  };
+  const handleServerSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setServerSearchTerm(event.target.value);
   };
 
   const handleRemoveApiTest = async (apiTestId: string) => {
@@ -113,8 +117,9 @@ export default function PlaygroundPage() {
   );
 
   useEffect(() => {
+    if (!serverSearchTerm) return;
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
-    fetch(`${API_ENDPOINT}`)
+    fetch(`${API_ENDPOINT}search?query=${serverSearchTerm}`)
       .then((response) => response.json())
       .then((result) => {
         dispatchApiTests({
@@ -123,15 +128,19 @@ export default function PlaygroundPage() {
         });
       })
       .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
-  }, []);
+  }, [serverSearchTerm]);
 
   return (
     <div>
       <h1>{welcome.greeting}</h1>
       <h2> {welcome.subtitle}</h2>
       <hr />
-      <InputWithLabel id="search" value={clientSearchTerm} onInputChange={handleClientSearch} isFocused>
+      <InputWithLabel id="client-search" value={clientSearchTerm} onInputChange={handleClientSearch}>
         <strong>Client search:</strong>
+      </InputWithLabel>
+      <hr />
+      <InputWithLabel id="server-search" value={serverSearchTerm} onInputChange={handleServerSearch} isFocused>
+        <strong>Server search:</strong>
       </InputWithLabel>
       <hr />
       {apiTests.isError && <p>There was an error!</p>}
