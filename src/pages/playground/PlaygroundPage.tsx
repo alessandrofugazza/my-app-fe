@@ -2,7 +2,7 @@ import { ApiTest } from "../../types/ApiTest";
 import ApiTestForm from "./ApiTestForm";
 import ApiTestList from "./ApiTestList";
 import axios from "axios";
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { Spinner } from "react-bootstrap";
 
@@ -116,7 +116,7 @@ export default function PlaygroundPage() {
     apiTest.title.toLowerCase().includes(clientSearchTerm.toLowerCase())
   );
 
-  useEffect(() => {
+  const handleFetchApiTests = useCallback(() => {
     if (!serverSearchTerm) return;
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
     fetch(`${API_ENDPOINT}search?query=${serverSearchTerm}`)
@@ -129,6 +129,10 @@ export default function PlaygroundPage() {
       })
       .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
   }, [serverSearchTerm]);
+
+  useEffect(() => {
+    handleFetchApiTests();
+  }, [handleFetchApiTests]);
 
   return (
     <div>
