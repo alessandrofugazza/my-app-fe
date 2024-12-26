@@ -4,7 +4,7 @@ import ApiTestList from "./ApiTestList";
 import axios from "axios";
 import { useCallback, useEffect, useReducer, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
-import { Spinner } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 
 const API_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`;
 
@@ -95,11 +95,18 @@ export default function PlaygroundPage() {
   const [clientSearchTerm, setClientSearchTerm] = useStorageState("clientSearch", "");
   const [serverSearchTerm, setServerSearchTerm] = useStorageState("serverSearch", "");
 
+  const [searchUrl, setSearchUrl] = useState(`${API_ENDPOINT}search?query=${serverSearchTerm}`);
+
+  const handleServerSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setServerSearchTerm(event.target.value);
+  };
+
+  const handleServerSearchSubmit = () => {
+    setSearchUrl(`${API_ENDPOINT}search?query=${serverSearchTerm}`);
+  };
+
   const handleClientSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setClientSearchTerm(event.target.value);
-  };
-  const handleServerSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setServerSearchTerm(event.target.value);
   };
 
   const handleRemoveApiTest = async (apiTestId: string) => {
@@ -119,7 +126,7 @@ export default function PlaygroundPage() {
   const handleFetchApiTests = useCallback(() => {
     if (!serverSearchTerm) return;
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
-    fetch(`${API_ENDPOINT}search?query=${serverSearchTerm}`)
+    fetch(searchUrl)
       .then((response) => response.json())
       .then((result) => {
         dispatchApiTests({
@@ -128,7 +135,7 @@ export default function PlaygroundPage() {
         });
       })
       .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
-  }, [serverSearchTerm]);
+  }, [searchUrl]);
 
   useEffect(() => {
     handleFetchApiTests();
@@ -144,9 +151,12 @@ export default function PlaygroundPage() {
       </InputWithLabel>
       <p>Number of filtered API tests: {apiTests.data.length - searchedApiTests.length}</p>
       <hr />
-      <InputWithLabel id="server-search" value={serverSearchTerm} onInputChange={handleServerSearch} isFocused>
+      <InputWithLabel id="server-search" value={serverSearchTerm} onInputChange={handleServerSearchInput} isFocused>
         <strong>Server search:</strong>
       </InputWithLabel>
+      <Button disabled={!serverSearchTerm} onClick={handleServerSearchSubmit}>
+        Submit
+      </Button>
       <hr />
       {apiTests.isError && <p>There was an error!</p>}
       {apiTests.isLoading ? (
