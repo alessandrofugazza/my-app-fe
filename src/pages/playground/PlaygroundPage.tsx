@@ -124,7 +124,6 @@ export default function PlaygroundPage() {
   );
 
   const handleFetchApiTests = useCallback(() => {
-    if (!serverSearchTerm) return;
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
     fetch(searchUrl)
       .then((response) => response.json())
