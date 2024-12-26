@@ -142,6 +142,7 @@ export default function PlaygroundPage() {
       <InputWithLabel id="client-search" value={clientSearchTerm} onInputChange={handleClientSearch}>
         <strong>Client search:</strong>
       </InputWithLabel>
+      <p>Number of filtered API tests: {apiTests.data.length - searchedApiTests.length}</p>
       <hr />
       <InputWithLabel id="server-search" value={serverSearchTerm} onInputChange={handleServerSearch} isFocused>
         <strong>Server search:</strong>
