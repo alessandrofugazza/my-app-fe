@@ -125,12 +125,12 @@ export default function PlaygroundPage() {
 
   const handleFetchApiTests = useCallback(() => {
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
-    fetch(searchUrl)
-      .then((response) => response.json())
+    axios
+      .get(searchUrl)
       .then((result) => {
         dispatchApiTests({
           type: "APITESTS_FETCH_SUCCESS",
-          payload: result,
+          payload: result.data,
         });
       })
       .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
