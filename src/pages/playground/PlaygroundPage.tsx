@@ -4,7 +4,7 @@ import ApiTestList from "./ApiTestList";
 import axios from "axios";
 import { useCallback, useEffect, useReducer, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
-import { Button, Spinner } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 
 const API_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`;
 
@@ -101,7 +101,8 @@ export default function PlaygroundPage() {
     setServerSearchTerm(event.target.value);
   };
 
-  const handleServerSearchSubmit = () => {
+  const handleServerSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setSearchUrl(`${API_ENDPOINT}search?query=${serverSearchTerm}`);
   };
 
@@ -157,14 +158,33 @@ export default function PlaygroundPage() {
         <strong>Client search:</strong>
       </InputWithLabel>
       <p>Number of filtered API tests: {apiTests.data.length - searchedApiTests.length}</p>
-      <hr />
+
+      {/* <hr />
       <InputWithLabel id="server-search" value={serverSearchTerm} onInputChange={handleServerSearchInput} isFocused>
         <strong>Server search:</strong>
       </InputWithLabel>
       <Button disabled={!serverSearchTerm} onClick={handleServerSearchSubmit}>
         Submit
       </Button>
+      <hr /> */}
       <hr />
+      <Form onSubmit={handleServerSearchSubmit}>
+        <Form.Group controlId="server-search">
+          <Form.Label>Server search</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Search an entry"
+            value={serverSearchTerm}
+            onChange={handleServerSearchInput}
+            autoFocus
+          />
+        </Form.Group>
+        <Button disabled={!serverSearchTerm} variant="light" type="submit">
+          Submit
+        </Button>
+      </Form>
+      <hr />
+
       {apiTests.isError && <p>There was an error!</p>}
       {apiTests.isLoading ? (
         <div className="d-flex py-5">
