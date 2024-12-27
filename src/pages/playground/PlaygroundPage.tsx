@@ -123,18 +123,26 @@ export default function PlaygroundPage() {
     apiTest.title.toLowerCase().includes(clientSearchTerm.toLowerCase())
   );
 
-  const handleFetchApiTests = useCallback(() => {
+  const handleFetchApiTests = useCallback(async () => {
     dispatchApiTests({ type: APITESTS_FETCH_INIT });
-    axios
-      .get(searchUrl)
-      .then((result) => {
-        dispatchApiTests({
-          type: "APITESTS_FETCH_SUCCESS",
-          payload: result.data,
-        });
-      })
-      .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
+    try {
+      const result = await axios.get(searchUrl);
+      dispatchApiTests({
+        type: "APITESTS_FETCH_SUCCESS",
+        payload: result.data,
+      });
+    } catch (error) {
+      dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" });
+    }
   }, [searchUrl]);
+  //     .then((result) => {
+  //       dispatchApiTests({
+  //         type: "APITESTS_FETCH_SUCCESS",
+  //         payload: result.data,
+  //       });
+  //     })
+  //     .catch(() => dispatchApiTests({ type: "APITESTS_FETCH_FAILURE" }));
+  // }, [searchUrl]);
 
   useEffect(() => {
     handleFetchApiTests();
