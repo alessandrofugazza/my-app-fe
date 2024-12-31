@@ -12,7 +12,9 @@ import LearnPage from "./pages/learn/LearnPage.tsx";
 import NotesPage from "./pages/notes/NotesPage.tsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
-import PlaygroundPage from "./pages/playground/PlaygroundPage.tsx";
+import PlaygroundHomePage from "./pages/playground/PlaygroundHomePage.tsx";
+import CSSPlaygroundPage from "./pages/playground/CSSPlaygroundPage.tsx";
+import GeneralPlaygroundPage from "./pages/playground/GeneralPlaygroundPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -44,9 +46,32 @@ const router = createBrowserRouter([
         path: "notes",
         element: <NotesPage />,
       },
+      // CHECK why doesnt this work ffs
+      // {
+      //   path: "playground",
+      //   element: <PlaygroundHomePage />,
+      //   children: [
+      //     {
+      //       path: "general",
+      //       element: <GeneralPlaygroundPage />,
+      //     },
+      //     {
+      //       path: "css",
+      //       element: <CSSPlaygroundPage />,
+      //     },
+      //   ],
+      // },
       {
         path: "playground",
-        element: <PlaygroundPage />,
+        element: <PlaygroundHomePage />,
+      },
+      {
+        path: "playground/general",
+        element: <GeneralPlaygroundPage />,
+      },
+      {
+        path: "playground/css",
+        element: <CSSPlaygroundPage />,
       },
     ],
   },

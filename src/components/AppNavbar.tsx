@@ -17,7 +17,15 @@ export default function AppNavbar() {
             <Nav.Link as={NavLink} to={"/"}>
               Home
             </Nav.Link>
-            <NavDropdown title="Sections" id="basic-nav-dropdown">
+            <NavDropdown title="Playground" id="basic-nav-dropdown">
+              <NavDropdown.Item as={NavLink} to="/playground/general">
+                General
+              </NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/playground/css">
+                CSS
+              </NavDropdown.Item>
+            </NavDropdown>
+            {/* <NavDropdown title="Sections" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/sources">
                 Sources
               </NavDropdown.Item>
@@ -33,7 +41,10 @@ export default function AppNavbar() {
               <NavDropdown.Item as={NavLink} to="/notes">
                 Notes
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
+            {/* <Nav.Link as={NavLink} to={"/playground"}>
+              Home
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
