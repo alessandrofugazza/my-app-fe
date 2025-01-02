@@ -89,7 +89,7 @@ const apiTestsReducer = (state: ApiTestsState, action: ApiTestsAction) => {
   }
 };
 
-export default function GeneralPlaygroundPage() {
+export default function ApiTestsPlaygroundPage() {
   const [apiTests, dispatchApiTests] = useReducer(apiTestsReducer, { data: [], isLoading: false, isError: false });
 
   const [clientSearchTerm, setClientSearchTerm] = useStorageState("clientSearch", "");

@@ -14,7 +14,8 @@ import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
 import PlaygroundHomePage from "./pages/playground/PlaygroundHomePage.tsx";
 import CSSPlaygroundPage from "./pages/playground/CSSPlaygroundPage.tsx";
-import GeneralPlaygroundPage from "./pages/playground/GeneralPlaygroundPage.tsx";
+import GeneralPlaygroundPage from "./pages/playground/ApiTestsPlaygroundPage.tsx";
+import ApiTestsPlaygroundPage from "./pages/playground/ApiTestsPlaygroundPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -66,8 +67,8 @@ const router = createBrowserRouter([
         element: <PlaygroundHomePage />,
       },
       {
-        path: "playground/general",
-        element: <GeneralPlaygroundPage />,
+        path: "playground/api-tests",
+        element: <ApiTestsPlaygroundPage />,
       },
       {
         path: "playground/css",
