@@ -1,6 +1,5 @@
 import { Stack } from "react-bootstrap";
 import SectionListCard from "./SectionListCard";
-import { Outlet } from "react-router-dom";
 
 const welcome = {
   greeting: "Welcome to the playground",

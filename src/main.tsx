@@ -4,18 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.scss";
 import Root from "./Root.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import ProjectsPage from "./pages/projects/ProjectsPage.tsx";
-import SourcesPage from "./pages/sources/SourcesPage.tsx";
-import ProgressPage from "./pages/progress/ProgressPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
-import LearnPage from "./pages/learn/LearnPage.tsx";
-import NotesPage from "./pages/notes/NotesPage.tsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.ts";
 import PlaygroundHomePage from "./pages/playground/PlaygroundHomePage.tsx";
-import CSSPlaygroundPage from "./pages/playground/CSSPlaygroundPage.tsx";
-import GeneralPlaygroundPage from "./pages/playground/ApiTestsPlaygroundPage.tsx";
-import ApiTestsPlaygroundPage from "./pages/playground/ApiTestsPlaygroundPage.tsx";
+import CSSPlaygroundPage from "./pages/playground/css/CSSPlaygroundPage.tsx";
+import ApiTestsPlaygroundPage from "./pages/playground/api-tests/ApiTestsPlaygroundPage.tsx";
+import GeneralNotesPage from "./pages/general/GeneralNotesPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -28,25 +23,29 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "projects",
-        element: <ProjectsPage />,
+        path: "general",
+        element: <GeneralNotesPage />,
       },
-      {
-        path: "sources",
-        element: <SourcesPage />,
-      },
-      {
-        path: "progress",
-        element: <ProgressPage />,
-      },
-      {
-        path: "learn",
-        element: <LearnPage />,
-      },
-      {
-        path: "notes",
-        element: <NotesPage />,
-      },
+      // {
+      //   path: "projects",
+      //   element: <ProjectsPage />,
+      // },
+      // {
+      //   path: "sources",
+      //   element: <SourcesPage />,
+      // },
+      // {
+      //   path: "progress",
+      //   element: <ProgressPage />,
+      // },
+      // {
+      //   path: "learn",
+      //   element: <LearnPage />,
+      // },
+      // {
+      //   path: "notes",
+      //   element: <NotesPage />,
+      // },
       // CHECK why doesnt this work ffs
       // {
       //   path: "playground",

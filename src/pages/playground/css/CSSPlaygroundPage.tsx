@@ -1,4 +1,3 @@
-import React from "react";
 import "./CSSPlaygroundPage.scss";
 
 export default function CSSPlaygroundPage() {

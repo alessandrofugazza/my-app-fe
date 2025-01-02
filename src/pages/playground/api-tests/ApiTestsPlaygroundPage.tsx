@@ -1,10 +1,10 @@
-import { ApiTest } from "../../types/ApiTest";
 import ApiTestForm from "./ApiTestForm";
 import ApiTestList from "./ApiTestList";
 import axios from "axios";
 import { useCallback, useEffect, useReducer, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { Button, Form, Spinner } from "react-bootstrap";
+import { ApiTest } from "../../../types/ApiTest";
 
 const API_ENDPOINT = `${import.meta.env.VITE_API_BASE_URL}/api-tests/v1/`;
 

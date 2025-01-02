@@ -1,6 +1,6 @@
 import { Alert, Stack } from "react-bootstrap";
-import { ApiTest } from "../../types/ApiTest";
 import ApiTestCard from "./ApiTestCard";
+import { ApiTest } from "../../../types/ApiTest";
 
 type ApiTestListProps = {
   apiTests: ApiTest[];

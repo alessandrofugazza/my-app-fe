@@ -1,5 +1,5 @@
 import { Button, Card, Stack } from "react-bootstrap";
-import { ApiTest } from "../../types/ApiTest";
+import { ApiTest } from "../../../types/ApiTest";
 
 type ApiTestCardProps = {
   apiTest: ApiTest;

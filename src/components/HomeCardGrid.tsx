@@ -9,6 +9,7 @@ export default function HomeCardGrid() {
       <HomeCard to="projects" section="Projects" icon="bi bi-easel" />
       <HomeCard to="learn" section="Learn" icon="bi bi-book" />
       <HomeCard to="notes" section="Notes" icon="bi bi-sticky" /> */}
+      <HomeCard to="general" section="General Notes" icon="bi bi-journal" />
       <HomeCard to="playground" section="Playground" icon="bi bi-brush" />
     </Row>
   );
