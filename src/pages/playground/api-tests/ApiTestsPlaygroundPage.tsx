@@ -8,9 +8,7 @@ import {
   DATA_FETCH_FAILURE,
   DATA_FETCH_INIT,
   DATA_FETCH_SUCCESS,
-  DataAction,
   dataReducer,
-  DataState,
   REMOVE_DATA_ENTRY,
 } from "../../../types/shared/DataState";
 import { ApiTest } from "../../../types/ApiTest";
