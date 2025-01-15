@@ -38,7 +38,10 @@ export default function GeneralNotesPage() {
           <ListGroup>
             {apiTests.map((test) => (
               <ListGroup.Item action href={`#${test.id}`} key={test.id}>
-                {test.name}
+                <p className="m-0" style={{ fontSize: "1.2em" }}>
+                  {test.name}
+                </p>
+                <p className="m-0">{test.description}</p>
               </ListGroup.Item>
             ))}
           </ListGroup>
