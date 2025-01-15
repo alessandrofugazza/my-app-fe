@@ -2,6 +2,7 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
+import Button from "react-bootstrap/Button";
 
 const apiTests = [
   {
@@ -50,9 +51,19 @@ export default function GeneralNotesPage() {
           <Tab.Content>
             {apiTests.map((test) => (
               <Tab.Pane eventKey={`#${test.id}`} key={test.id}>
-                <h4>{test.name}</h4>
-                <p>{test.description}</p>
-                <div>{test.content}</div>
+                <div>
+                  <div className="d-flex">
+                    <div>
+                      <h4>{test.name}</h4>
+                      <p>{test.description}</p>
+                    </div>
+                    <div className="d-flex ms-auto align-items-start gap-3">
+                      <Button variant="primary">Edit</Button>
+                      <Button variant="secondary">Delete</Button>
+                    </div>
+                  </div>
+                  <div>{test.content}</div>
+                </div>
               </Tab.Pane>
             ))}
           </Tab.Content>
