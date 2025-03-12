@@ -18,33 +18,13 @@ export default function AppNavbar() {
               Home
             </Nav.Link>
             <NavDropdown title="Playground" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/playground/general">
-                General
+              <NavDropdown.Item as={NavLink} to="/playground/api-tests">
+                Api
               </NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="/playground/css">
                 CSS
               </NavDropdown.Item>
             </NavDropdown>
-            {/* <NavDropdown title="Sections" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/sources">
-                Sources
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/progress">
-                Progress
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/projects">
-                Projects
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/learn">
-                Learn
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/notes">
-                Notes
-              </NavDropdown.Item>
-            </NavDropdown> */}
-            {/* <Nav.Link as={NavLink} to={"/playground"}>
-              Home
-            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
