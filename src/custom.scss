@@ -1,8 +1,19 @@
 /* make the customizations */
-// $theme-colors: (
-//     'info': tomato,
-//     'danger': teal
+
+// TODO WHY DOES IT HAVE TO BE SO HARD TO CHANGE PRIMARY TO WHITE??
+
+// $primary: #f8f9fa;
+
+
+// $custom-colors: (
+//     "custom-color": #900
 // );
+
+// $theme-colors: map-merge($theme-colors, $custom-colors);
+
+// $primary: white;
+
+
 
 /* import bootstrap to set changes */
 // CHECK should be @import '~bootstrap/scss/bootstrap';

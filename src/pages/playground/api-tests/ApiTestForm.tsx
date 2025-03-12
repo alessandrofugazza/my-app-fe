@@ -57,7 +57,7 @@ export default function ApiTestForm() {
         </Form.Group>
 
         <div className="text-end">
-          <Button variant="primary" type="submit">
+          <Button variant="light" type="submit">
             Submit
           </Button>
         </div>
