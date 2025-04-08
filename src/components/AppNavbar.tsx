@@ -17,6 +17,9 @@ export default function AppNavbar() {
             <Nav.Link as={NavLink} to={"/"}>
               Home
             </Nav.Link>
+            <Nav.Link as={NavLink} to={"/database"}>
+              Database
+            </Nav.Link>
             <NavDropdown title="Playground" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/playground/api-tests">
                 Api

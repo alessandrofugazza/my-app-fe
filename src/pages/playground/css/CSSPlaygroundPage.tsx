@@ -2,9 +2,16 @@ import "./CSSPlaygroundPage.scss";
 
 export default function CSSPlaygroundPage() {
   return (
-    <div className="my-container">
-      <h1 className="my-h1">CSS Playground</h1>
-      <p>This is a placeholder page for experimenting with CSS.</p>
+    <div>
+      <h1>Floating Elements</h1>
+
+      <div>
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+        <p id="p4"></p>
+        <section>This is regular content continuing after the the paragraph boxes.</section>
+      </div>
     </div>
   );
 }

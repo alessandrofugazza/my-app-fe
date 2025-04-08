@@ -10,6 +10,7 @@ import { store } from "./app/store.ts";
 import PlaygroundHomePage from "./pages/playground/PlaygroundHomePage.tsx";
 import CSSPlaygroundPage from "./pages/playground/css/CSSPlaygroundPage.tsx";
 import ApiTestsPlaygroundPage from "./pages/playground/api-tests/ApiTestsPlaygroundPage.tsx";
+import Database from "./pages/database/Database.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "database",
+        element: <Database />,
       },
       {
         path: "playground",

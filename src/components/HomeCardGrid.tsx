@@ -4,6 +4,7 @@ import HomeCard from "./HomeCard";
 export default function HomeCardGrid() {
   return (
     <Row xs={1} sm={2} md={4} className="g-4">
+      <HomeCard to="database" section="Database" icon="bi bi-database" />
       <HomeCard to="playground" section="Playground" icon="bi bi-brush" />
     </Row>
   );
