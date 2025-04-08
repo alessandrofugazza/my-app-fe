@@ -10,7 +10,7 @@ import { store } from "./app/store.ts";
 import PlaygroundHomePage from "./pages/playground/PlaygroundHomePage.tsx";
 import CSSPlaygroundPage from "./pages/playground/css/CSSPlaygroundPage.tsx";
 import ApiTestsPlaygroundPage from "./pages/playground/api-tests/ApiTestsPlaygroundPage.tsx";
-import GeneralNotesPage from "./pages/general/GeneralNotesPage.tsx";
+import Database from "./pages/database/Database.tsx";
 
 const router = createBrowserRouter([
   {
@@ -23,44 +23,9 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "general",
-        element: <GeneralNotesPage />,
+        path: "database",
+        element: <Database />,
       },
-      // {
-      //   path: "projects",
-      //   element: <ProjectsPage />,
-      // },
-      // {
-      //   path: "sources",
-      //   element: <SourcesPage />,
-      // },
-      // {
-      //   path: "progress",
-      //   element: <ProgressPage />,
-      // },
-      // {
-      //   path: "learn",
-      //   element: <LearnPage />,
-      // },
-      // {
-      //   path: "notes",
-      //   element: <NotesPage />,
-      // },
-      // CHECK why doesnt this work ffs
-      // {
-      //   path: "playground",
-      //   element: <PlaygroundHomePage />,
-      //   children: [
-      //     {
-      //       path: "general",
-      //       element: <GeneralPlaygroundPage />,
-      //     },
-      //     {
-      //       path: "css",
-      //       element: <CSSPlaygroundPage />,
-      //     },
-      //   ],
-      // },
       {
         path: "playground",
         element: <PlaygroundHomePage />,

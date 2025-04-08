@@ -12,7 +12,7 @@ export default function PlaygroundHomePage() {
       <h1>{welcome.greeting}</h1>
       <h2> {welcome.subtitle}</h2>
       <Stack gap={3}>
-        <SectionListCard title={`Api Tests`} to={"playground/api-tests"} />
+        <SectionListCard title={`Api`} to={"playground/api-tests"} />
         <SectionListCard title={`CSS`} to={"playground/css"} />
       </Stack>
     </div>
